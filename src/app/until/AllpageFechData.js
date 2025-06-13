@@ -1,11 +1,8 @@
 export default async function AllpageFechData(params) {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_BASE_URL}${params}`,
-        {
-          cache: "no-store",
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}${params}`, {
+        next: { revalidate: 30 },
+      })
       if (!response) {
         throw new Error(`Failed to fetch data: ${response.statusText}`);
       }
