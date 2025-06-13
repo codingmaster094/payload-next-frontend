@@ -4,45 +4,38 @@ import ContactAboutDetails from './../component/ContactAboutDetails'
 import Maps from './../component/Maps'
 import Contactform from './../component/Contactform'
 import ReviewDataComponent from '../component/ReviewDataComponent'
+import AllpageFechData from '../until/AllpageFechData'
 
 const page = async () => {
   let KontaktPageData
   let FooterData = null
-  try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=kontakt`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
 
-    KontaktPageData = await res.json()
+  
+  try {
+    KontaktPageData = await AllpageFechData('/my-route?type=global&slug=kontakt')
   } catch (error) {
-    console.error('Error loading Kontakt page data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
   }
 
   try {
-    const res = await fetch(
-      `https://payload-backend-20uj.onrender.com/my-route?type=footer`,
-    )
-    FooterData = await res.json()
-  } catch (error) {
-    console.error('Error fetching header data:', error)
-  }
-
+    FooterData = await AllpageFechData(`/my-route?type=footer`)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      return <div>Error loading data.</div>
+    }
+  
   let ReviewsDatas
   try {
-    const res = await fetch(
-      `https://payload-backend-20uj.onrender.com/my-route?type=review`,
-    )
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
+    ReviewsDatas = await AllpageFechData('/my-route?type=review')
+   } catch (error) {
+     console.error('Error fetching data:', error)
+     return <div>Error loading data.</div>
+   }
 
-    ReviewsDatas = await res.json()
-  } catch (error) {
-    console.error('Error loading review ReviewComponent data:', error)
-    return <div>Error loading data.</div>
-  }
+   if (!FooterData || !KontaktPageData || !ReviewsDatas) {
+     return <div>No data available.</div>
+   }
 
  
   return (

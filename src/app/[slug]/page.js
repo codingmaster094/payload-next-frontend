@@ -2,34 +2,29 @@ import React from 'react'
 import BannerCarousel from '../component/Banner'
 import MultipleAboutdetails from '../component/MultipleAboutdetails'
 import ReviewDataComponent from '../component/ReviewDataComponent'
+import AllpageFechData from '../until/AllpageFechData'
 export default async function LandingPage({ params }) {
   const { slug } = await params
   let landingData
 
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=landing&slug=${slug}`) // APi
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    landingData = await res.json()
+    landingData = await AllpageFechData(`/my-route?type=landing&slug=${slug}`)
   } catch (error) {
-    console.error('Error loading landingData page data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
   }
 
   let ReviewsDatas
-  try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    ReviewsDatas = await res.json()
-  } catch (error) {
-    console.error('Error loading review ReviewComponent data:', error)
-    return <div>Error loading data.</div>
-  }
+   try {
+      ReviewsDatas = await AllpageFechData('/my-route?type=review')
+     } catch (error) {
+       console.error('Error fetching data:', error)
+       return <div>Error loading data.</div>
+     }
+  
+     if (!landingData || !ReviewsDatas) {
+       return <div>No data available.</div>
+     }
 
   return (
     <>

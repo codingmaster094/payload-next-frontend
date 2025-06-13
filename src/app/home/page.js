@@ -7,35 +7,31 @@ import Fermentum from './../component/Fermentum'
 import Serviceslider from './../component/Serviceslider'
 import ReviewDataComponent from '../component/ReviewDataComponent'
 
+import AllpageFechData from "../until/AllpageFechData";
+
 const HomePage = async () => {
   let ReviewsDatas
   let HomePageData
 
-  try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=home`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
+   try {
+     HomePageData = await AllpageFechData('/my-route?type=global&slug=home')
+   } catch (error) {
+     console.error("Error fetching data:", error);
+     return <div>Error loading data.</div>; 
+   }
 
-    HomePageData = await res.json()
-  } catch (error) {
-    console.error('Error loading home page data:', error)
-    return <div>Error loading data.</div>
-  }
 
-  try {
-    const res = await fetch(
-      `https://payload-backend-20uj.onrender.com/my-route?type=review`,
-    )
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
+   try {
+    ReviewsDatas = await AllpageFechData('/my-route?type=review')
+   } catch (error) {
+     console.error('Error fetching data:', error)
+     return <div>Error loading data.</div>
+   }
 
-    ReviewsDatas = await res.json()
-  } catch (error) {
-    console.error('Error loading review ReviewComponent data:', error)
-    return <div>Error loading data.</div>
-  }
+   if (!HomePageData || !ReviewsDatas) {
+     return <div>No data available.</div>
+   }
+
   return (
     <>
       <BannerCarousel

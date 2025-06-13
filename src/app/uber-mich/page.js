@@ -5,31 +5,28 @@ import Counter from './../component/Counter'
 import UberAboutDeatilsleft from './../component/UberAboutDeatilsleft'
 import CTA_component from './../component/CTA_component'
 import ReviewDataComponent from '../component/ReviewDataComponent'
+import AllpageFechData from '../until/AllpageFechData'
 const page = async () => {
   let UbermichData
+  
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=uber-mich`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    UbermichData = await res.json()
+    UbermichData = await AllpageFechData(`/my-route?type=global&slug=uber-mich`)
   } catch (error) {
-    console.error('Error loading home page data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
   }
 
+
   let ReviewsDatas
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    ReviewsDatas = await res.json()
+    ReviewsDatas = await AllpageFechData('/my-route?type=review')
   } catch (error) {
-    console.error('Error loading review ReviewComponent data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
+  }
+
+  if (!UbermichData || !ReviewsDatas) {
+    return <div>No data available.</div>
   }
 
   return (

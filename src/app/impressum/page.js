@@ -1,5 +1,5 @@
 import React from 'react'
-
+import AllpageFechData from '../until/AllpageFechData'
 const renderNode = (node, index) => {
   const { type, children, text, style, tag } = node
 
@@ -76,16 +76,16 @@ const page = async () => {
   let ImpressumData
 
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=impressum`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    ImpressumData = await res.json()
+    ImpressumData = await AllpageFechData(`/my-route?type=global&slug=impressum`)
   } catch (error) {
-    console.error('Error loading Impressum page data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
   }
+
+  if (!ImpressumData) {
+    return <div>No data available.</div>
+  }
+
 
   return (
     <section className="Im-section section">

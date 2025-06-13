@@ -1,25 +1,27 @@
 import React from 'react'
 import Footer from '../component/Footer'
-
+import AllpageFechData from "../until/AllpageFechData";
 const Page = async () => {
   let FooterData = null
   let menuData = null
 
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=footer`)
-    FooterData = await res.json()
-  } catch (error) {
-    console.error('Error fetching header data:', error)
-  }
-
-  try {
-    const res = await fetch(
-      `https://payload-backend-20uj.onrender.com/my-route?type=menus`,
-    )
-    menuData = await res.json()
-  } catch (error) {
-    console.error('Error fetching menu data:', error)
-  }
+    FooterData = await AllpageFechData(`/my-route?type=footer`)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      return <div>Error loading data.</div>
+    }
+  
+    try {
+      menuData = await AllpageFechData('/my-route?type=menus')
+     } catch (error) {
+       console.error('Error fetching data:', error)
+       return <div>Error loading data.</div>
+     }
+  
+     if (!FooterData || !menuData) {
+       return <div>No data available.</div>
+     }
 
   return <Footer FooterData={FooterData} menuData={menuData} />
 }

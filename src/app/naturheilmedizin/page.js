@@ -5,32 +5,30 @@ import Terminbroncher from './../component/Terminbroncher'
 import MultipleAboutdetails from './../component/MultipleAboutdetails'
 import Accordian from './../component/Accordian'
 import ReviewDataComponent from '../component/ReviewDataComponent'
+import AllpageFechData from '../until/AllpageFechData'
 
 const page = async () => {
   let NaturheilmedizinPageData
-  try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=naturheilmedizin`) // APi
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
 
-    NaturheilmedizinPageData = await res.json()
+  
+  try {
+    NaturheilmedizinPageData = await AllpageFechData(`/my-route?type=global&slug=naturheilmedizin`)
   } catch (error) {
-    console.error('Error loading Naturheilmedizin page data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
   }
 
+
   let ReviewsDatas
   try {
-    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status}`)
-    }
-
-    ReviewsDatas = await res.json()
+    ReviewsDatas = await AllpageFechData('/my-route?type=review')
   } catch (error) {
-    console.error('Error loading review ReviewComponent data:', error)
+    console.error('Error fetching data:', error)
     return <div>Error loading data.</div>
+  }
+
+  if (!NaturheilmedizinPageData || !ReviewsDatas) {
+    return <div>No data available.</div>
   }
 
   return (
