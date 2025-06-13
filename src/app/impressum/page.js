@@ -76,7 +76,7 @@ const page = async () => {
   let ImpressumData
 
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=global&slug=impressum`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=impressum`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }

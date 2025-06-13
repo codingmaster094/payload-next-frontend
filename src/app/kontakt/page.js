@@ -9,7 +9,7 @@ const page = async () => {
   let KontaktPageData
   let FooterData = null
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=global&slug=kontakt`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=kontakt`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
@@ -22,7 +22,7 @@ const page = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_BASE_URL}/my-route?type=footer`,
+      `https://payload-backend-20uj.onrender.com/my-route?type=footer`,
     )
     FooterData = await res.json()
   } catch (error) {
@@ -32,7 +32,7 @@ const page = async () => {
   let ReviewsDatas
   try {
     const res = await fetch(
-      `${process.env.NEXT_BASE_URL}/my-route?type=review`,
+      `https://payload-backend-20uj.onrender.com/my-route?type=review`,
     )
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
@@ -44,6 +44,7 @@ const page = async () => {
     return <div>Error loading data.</div>
   }
 
+ 
   return (
     <>
       <BannerCarousel

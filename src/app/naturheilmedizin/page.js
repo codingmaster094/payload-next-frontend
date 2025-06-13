@@ -9,7 +9,7 @@ import ReviewDataComponent from '../component/ReviewDataComponent'
 const page = async () => {
   let NaturheilmedizinPageData
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=global&slug=naturheilmedizin`) // APi
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=naturheilmedizin`) // APi
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
@@ -22,7 +22,7 @@ const page = async () => {
 
   let ReviewsDatas
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=review`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }

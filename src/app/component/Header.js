@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation'
 import Lenis from '@studio-freight/lenis'
 import { useRouter } from 'next/navigation'
 export default function Header({ menuData, headerDatas }) {
-  console.log('headerDatas', headerDatas)
   const pathname = usePathname()
   const lenisRef = useRef(null)
   const router = useRouter()
@@ -81,7 +80,7 @@ export default function Header({ menuData, headerDatas }) {
         <div className="logo flex items-center justify-center w-[150px] 2xl:w-[230px]">
           {headerDatas && (
             <Link href="/" aria-label="Home">
-              <Image src={headerDatas?.image?.url} width={249} height={82} alt="Logo" />
+              <Image src={headerDatas?.logo?.url} width={249} height={82} alt="Logo" />
             </Link>
           )}
         </div>

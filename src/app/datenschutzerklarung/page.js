@@ -77,7 +77,7 @@ const page = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_BASE_URL}/my-route?type=global&slug=datenschutzerklarung`,
+      `https://payload-backend-20uj.onrender.com/my-route?type=global&slug=datenschutzerklarung`,
     )
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)

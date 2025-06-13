@@ -6,7 +6,7 @@ const Page = async () => {
   let menuData = null
 
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=footer`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=footer`)
     FooterData = await res.json()
   } catch (error) {
     console.error('Error fetching header data:', error)
@@ -14,7 +14,7 @@ const Page = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_BASE_URL}/my-route?type=menus`,
+      `https://payload-backend-20uj.onrender.com/my-route?type=menus`,
     )
     menuData = await res.json()
   } catch (error) {

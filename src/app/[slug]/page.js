@@ -7,7 +7,7 @@ export default async function LandingPage({ params }) {
   let landingData
 
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=landing&slug=${slug}`) // APi
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=landing&slug=${slug}`) // APi
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
@@ -20,7 +20,7 @@ export default async function LandingPage({ params }) {
 
   let ReviewsDatas
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=review`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }

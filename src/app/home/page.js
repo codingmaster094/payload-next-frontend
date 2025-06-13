@@ -12,7 +12,7 @@ const HomePage = async () => {
   let HomePageData
 
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=global&slug=home`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=home`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
@@ -25,7 +25,7 @@ const HomePage = async () => {
 
   try {
     const res = await fetch(
-      `${process.env.NEXT_BASE_URL}/my-route?type=review`,
+      `https://payload-backend-20uj.onrender.com/my-route?type=review`,
     )
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)

@@ -8,7 +8,7 @@ import ReviewDataComponent from '../component/ReviewDataComponent'
 const page = async () => {
   let UbermichData
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=global&slug=uber-mich`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=global&slug=uber-mich`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
@@ -21,7 +21,7 @@ const page = async () => {
 
   let ReviewsDatas
   try {
-    const res = await fetch(`${process.env.NEXT_BASE_URL}/my-route?type=review`)
+    const res = await fetch(`https://payload-backend-20uj.onrender.com/my-route?type=review`)
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status}`)
     }
