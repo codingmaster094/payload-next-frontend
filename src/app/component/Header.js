@@ -203,10 +203,10 @@ export default function Header({ menuData, headerDatas }) {
 
           {/* Example Button */}
           <Link
-            href={"/"}
+            href={'/'}
             className="flex items-center justify-center text-center mt-5 lg:mt-0 bg-white text-Teal hover:bg-transparent border hover:border-white hover:text-white lg:bg-Teal lg:text-white lg:hover:bg-teal-600 font-normal px-5 py-3 sm:px-9 sm:py-4 transition-all duration-700 ease-in cursor-pointer"
           >
-            { "Team"}
+            {'Termin buchen'}
           </Link>
         </div>
       </nav>
