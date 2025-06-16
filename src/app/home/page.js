@@ -20,7 +20,7 @@ const HomePage = async () => {
      return <div>Error loading data.</div>; 
    }
 
-
+console.log('HomePageDatas', HomePageData)
    try {
     ReviewsDatas = await AllpageFechData('/my-route?type=review')
    } catch (error) {
