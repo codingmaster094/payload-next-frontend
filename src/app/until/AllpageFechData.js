@@ -1,4 +1,5 @@
 export default async function AllpageFechData(params) {
+  
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_BASE_URL || 'https://payload-backend-nu.vercel.app'}${params}`,
